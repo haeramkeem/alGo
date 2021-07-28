@@ -1,3 +1,9 @@
+/**
+ * https://www.acmicpc.net/problem/2667
+ *
+ * DFS + Stack
+ */
+
 package main
 
 import (

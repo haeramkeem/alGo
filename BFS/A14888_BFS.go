@@ -1,3 +1,9 @@
+/**
+ * https://www.acmicpc.net/problem/14888
+ *
+ * BFS
+ */
+
 package main
 
 import (

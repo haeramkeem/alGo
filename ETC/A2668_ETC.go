@@ -1,3 +1,9 @@
+/**
+ * https://www.acmicpc.net/problem/2668
+ *
+ * ETC(Unknown Algorithm)
+ */
+
 package main
 
 import (

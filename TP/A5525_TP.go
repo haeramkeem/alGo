@@ -1,3 +1,9 @@
+/**
+ * https://www.acmicpc.net/problem/5525
+ *
+ * Two Pointer
+ */
+
 package main
 
 import (

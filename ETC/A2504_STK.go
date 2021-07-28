@@ -1,3 +1,9 @@
+/**
+ * https://www.acmicpc.net/problem/2504
+ *
+ * Stack
+ */
+
 package main
 
 import "fmt"

@@ -1,3 +1,9 @@
+/**
+ * https://www.acmicpc.net/problem/14719
+ *
+ * ETC(Unknown Algorithm)
+ */
+
 package main
 
 import "fmt"
