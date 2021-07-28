@@ -1,3 +1,9 @@
+/**
+ * https://www.acmicpc.net/problem/1700
+ *
+ * OPT(Memory Replacement Policy of OS)
+ */
+
 package main
 
 import (
