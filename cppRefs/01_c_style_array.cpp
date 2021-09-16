@@ -10,7 +10,7 @@ int main() {
     int* dynamicArray = new int[5];
 
     // Deallocate dynamic array
-    delete dynamicArray;
+    delete[] dynamicArray;
 
     return 0;
 }
