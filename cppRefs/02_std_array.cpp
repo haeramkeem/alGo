@@ -22,6 +22,13 @@ int main() {
         cerr << err.what() << endl;
     }
 
+    // These are method to get first or last elemtnt
+    cout << stdArray2.front() << endl;
+    cout << stdArray2.back() << endl;
+
+    // .data() method returns pointer of array.
+    cout << *(stdArray2.data() + 1) << endl;
+
     // You can iterate array by ':'.
     //     It's similar with range keyword of GO.
     for(auto el : stdArray2) {
