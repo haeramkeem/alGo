@@ -18,11 +18,13 @@ int main() {
     // forward_list supports .front() to get first element.
     //     forward_list does not support direct-access element that is not first.
     //     this, you can't use [] operator or .at() method.
-    flistTest.front();
+    cout << flistTest1.front() << endl;
 
     // You can get first or next-to-last iterator by .begin() or .end() just like vector.
     //     but, iterator of forward_list doesn't support + or - operation.
     //     you should use ++ operator to iterate.
+    //     and std::forward_list is one-way list, so you can't access previous element.
+    //     so you can't use -- operator.
     for(auto it = flistTest1.begin(); it != flistTest1.end(); it++) {
         cout << *it << ' ';
     }
@@ -39,6 +41,7 @@ int main() {
     flistTest1.pop_front();
 
     // .erase_after() method deletes element followed by iterator. it's usage is same as vector.
+    //     but unlike array or vector, this process takes O(1).
     flistTest1.erase_after(flistTest1.begin()); // result is {6, 2, 3, 4, 5}
     flistTest1.erase_after(flistTest1.begin(), flistTest1.end()); // result is {6}
 
