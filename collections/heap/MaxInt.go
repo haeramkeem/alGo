@@ -7,12 +7,14 @@ func NewMaxInt(size int) *MaxInt {
 	return &MaxInt{0, make([]int, size)}
 }
 
-func (h *MaxInt) Push(el int) {
+func (h *MaxInt) Push(el int) error {
+	if h.Tail >= len(h.Tree) { return errors.New("heap: full") }
 	h.Tree[h.Tail] = el
 	h.Tail++
 	if h.Tail < 2 {
 		h.sortAfterPush(h.Tail)
 	}
+	return nil
 }
 
 func (h *MaxInt) Pop() (int, error) {

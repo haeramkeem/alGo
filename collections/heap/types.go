@@ -11,7 +11,7 @@ type MaxInt struct{
 }
 
 type Heap interface {
-	Push(el int)
+	Push(el int) error
 	Pop() (int, error)
 	GetTreeSlice() []int
 	sortAfterPush(cur int)

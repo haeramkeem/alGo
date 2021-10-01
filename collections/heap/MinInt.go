@@ -7,12 +7,14 @@ func NewMinInt(size int) *MinInt {
 	return &MinInt{0, make([]int, size)}
 }
 
-func (h *MinInt) Push(el int) {
+func (h *MinInt) Push(el int) error {
+	if h.Tail >= len(h.Tree) { return errors.New("heap: full") }
 	h.Tree[h.Tail] = el
 	h.Tail++
 	if h.Tail < 2 {
 		h.sortAfterPush(h.Tail)
 	}
+	return nil
 }
 
 func (h *MinInt) Pop() (int, error) {
