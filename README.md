@@ -8,7 +8,8 @@ AlGo rithms
 4. and any other sources...
 
 ## Structure
---- alGo            // Root directory  
+-- alGo             // Root directory  
  |- algorithms      // Answers of various algorithm problems  
  |- collections     // Implementations & examples & references of collections  
  |- cppReferences   // C++ grammar references  
+ |- goReferences    // Golang grammar references  
