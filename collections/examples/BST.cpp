@@ -47,6 +47,28 @@ struct BST {
         this->inOrder(this->root);
     }
 
+    /**
+     * If the elements of BST are skewed to the left, rotating them to the right will help improve performance.
+     */
+    void rotateRight() {
+        if(!this->root->first) { return; }
+        Node* rootTemp = this->root;
+        this->root = this->root->first;
+        rootTemp->first = this->root->second;
+        this->root->second = rootTemp;
+    }
+
+    /**
+     * If the elements of BST are skewed to the right, rotating them to the left will help improve performance.
+     */
+    void rotateLeft() {
+        if(!this->root->second) { return; }
+        Node* rootTemp = this->root;
+        this->root = this->root->second;
+        rootTemp->second = this->root->first;
+        this->root->first = rootTemp;
+    }
+
 private:
     /**
      * Finding one element.
@@ -173,6 +195,14 @@ int main() {
     cout << endl;
 
     bst.del(5);
+    bst.print(); // result is "1 2 3 4 6 7 8 9 10 11"
+    cout << endl;
+
+    bst.rotateRight();
+    bst.print(); // result is "1 2 3 4 6 7 8 9 10 11"
+    cout << endl;
+
+    bst.rotateLeft();
     bst.print(); // result is "1 2 3 4 6 7 8 9 10 11"
     cout << endl;
 
