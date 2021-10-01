@@ -2,11 +2,6 @@ package heap
 
 import "errors"
 
-type MinInt struct{
-	Tail	int
-	Tree	[]int
-}
-
 func NewMinInt(size int) *MinInt {
 	return &MinInt{0, make([]int, size)}
 }

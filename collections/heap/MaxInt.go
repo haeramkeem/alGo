@@ -2,11 +2,6 @@ package heap
 
 import "errors"
 
-type MaxInt struct{
-	Tail	int
-	Tree	[]int
-}
-
 func NewMaxInt(size int) *MaxInt {
 	return &MaxInt{0, make([]int, size)}
 }
