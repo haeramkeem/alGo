@@ -7,9 +7,8 @@ type MinInt struct{
 	Tree	[]int
 }
 
-func (h *MinInt) Size(size int) *MinInt {
-	h.Tree = make([]int, size)
-	return h
+func NewMinInt(size int) *MinInt {
+	return &MinInt{0, make([]int, size)}
 }
 
 func (h *MinInt) Push(el int) {

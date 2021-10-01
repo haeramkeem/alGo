@@ -4,11 +4,11 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/haeramkeem/gocol/heap"
+	"github.com/haeramkeem/alGo/collections/heap"
 )
 
 func TestMaxIntPush(t *testing.T) {
-	test := new(heap.MaxInt).Size(10)
+	test := heap.NewMaxInt(10)
 	test.Push(2)
 	test.Push(5)
 	test.Push(1)
@@ -40,14 +40,14 @@ func TestMaxIntPop(t *testing.T) {
 }
 
 func BenchmarkMaxIntPush(b *testing.B) {
-	test := new(heap.MaxInt).Size(b.N)
+	test := heap.NewMaxInt(b.N)
 	for i := 0; i < b.N; i++ {
 		test.Push(rand.Int())
 	}
 }
 
 func BenchmarkMaxIntPop(b *testing.B) {
-	test := new(heap.MaxInt).Size(b.N)
+	test := heap.NewMaxInt(b.N)
 	for i := 0; i < b.N; i++ {
 		test.Push(rand.Int())
 	}
@@ -57,7 +57,7 @@ func BenchmarkMaxIntPop(b *testing.B) {
 }
 
 func TestMinIntPush(t *testing.T) {
-	test := new(heap.MinInt).Size(10)
+	test := heap.NewMinInt(10)
 	test.Push(2)
 	test.Push(5)
 	test.Push(1)
@@ -89,14 +89,14 @@ func TestMinIntPop(t *testing.T) {
 }
 
 func BenchmarkMinIntPush(b *testing.B) {
-	test := new(heap.MinInt).Size(b.N)
+	test := heap.NewMinInt(b.N)
 	for i := 0; i < b.N; i++ {
 		test.Push(rand.Int())
 	}
 }
 
 func BenchmarkMinIntPop(b *testing.B) {
-	test := new(heap.MinInt).Size(b.N)
+	test := heap.NewMinInt(b.N)
 	for i := 0; i < b.N; i++ {
 		test.Push(rand.Int())
 	}

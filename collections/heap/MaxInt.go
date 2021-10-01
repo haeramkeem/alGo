@@ -7,9 +7,8 @@ type MaxInt struct{
 	Tree	[]int
 }
 
-func (h *MaxInt) Size(size int) *MaxInt {
-	h.Tree = make([]int, size)
-	return h
+func NewMaxInt(size int) *MaxInt {
+	return &MaxInt{0, make([]int, size)}
 }
 
 func (h *MaxInt) Push(el int) {
