@@ -2,6 +2,7 @@ package heap
 
 import "errors"
 
+/* ----- PUBLIC ----- */
 func NewMinInt(size int) *MinInt {
 	return &MinInt{0, make([]int, size)}
 }
@@ -9,15 +10,8 @@ func NewMinInt(size int) *MinInt {
 func (h *MinInt) Push(el int) {
 	h.Tree[h.Tail] = el
 	h.Tail++
-	if h.Tail != 1 {
+	if h.Tail < 2 {
 		h.sortAfterPush(h.Tail)
-	}
-}
-
-func (h *MinInt) sortAfterPush(cur int) {
-	if cur != 1 && h.Tree[cur - 1] < h.Tree[cur / 2 - 1] {
-		h.Tree[cur - 1], h.Tree[cur / 2 - 1] = h.Tree[cur / 2 - 1], h.Tree[cur - 1]
-		h.sortAfterPush(cur / 2)
 	}
 }
 
@@ -30,6 +24,14 @@ func (h *MinInt) Pop() (int, error) {
 	h.Tail--
 	h.sortAfterPop(1)
 	return target, nil
+}
+
+/* ----- PRIVATE ----- */
+func (h *MinInt) sortAfterPush(cur int) {
+	if cur != 1 && h.Tree[cur - 1] < h.Tree[cur / 2 - 1] {
+		h.Tree[cur - 1], h.Tree[cur / 2 - 1] = h.Tree[cur / 2 - 1], h.Tree[cur - 1]
+		h.sortAfterPush(cur / 2)
+	}
 }
 
 func (h *MinInt) sortAfterPop(cur int) {

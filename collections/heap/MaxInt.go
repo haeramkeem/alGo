@@ -2,6 +2,7 @@ package heap
 
 import "errors"
 
+/* ----- PUBLIC ----- */
 func NewMaxInt(size int) *MaxInt {
 	return &MaxInt{0, make([]int, size)}
 }
@@ -9,15 +10,8 @@ func NewMaxInt(size int) *MaxInt {
 func (h *MaxInt) Push(el int) {
 	h.Tree[h.Tail] = el
 	h.Tail++
-	if h.Tail != 1 {
+	if h.Tail < 2 {
 		h.sortAfterPush(h.Tail)
-	}
-}
-
-func (h *MaxInt) sortAfterPush(cur int) {
-	if cur != 1 && h.Tree[cur - 1] > h.Tree[cur / 2 - 1] {
-		h.Tree[cur - 1], h.Tree[cur / 2 - 1] = h.Tree[cur / 2 - 1], h.Tree[cur - 1]
-		h.sortAfterPush(cur / 2)
 	}
 }
 
@@ -30,6 +24,14 @@ func (h *MaxInt) Pop() (int, error) {
 	h.Tail--
 	h.sortAfterPop(1)
 	return target, nil
+}
+
+/* ----- PRIVATE ----- */
+func (h *MaxInt) sortAfterPush(cur int) {
+	if cur != 1 && h.Tree[cur - 1] > h.Tree[cur / 2 - 1] {
+		h.Tree[cur - 1], h.Tree[cur / 2 - 1] = h.Tree[cur / 2 - 1], h.Tree[cur - 1]
+		h.sortAfterPush(cur / 2)
+	}
 }
 
 func (h *MaxInt) sortAfterPop(cur int) {
