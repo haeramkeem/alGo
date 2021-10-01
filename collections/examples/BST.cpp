@@ -125,7 +125,7 @@ private:
     /**
      * Successor is a node that is bigger than target's data, but smallest one in target's right-subtree.
      *     therefore, the successor must be the leftmost node in the right-subtree of the target.
-     *     so, successor can't have left-children.
+     *     so, successor can't have left-child.
      */
     Node* successor(Node* target) {
         auto cur = target->second;
@@ -140,28 +140,28 @@ private:
         // if target is null, returns null.
         if(!target) { return NULL; }
 
-        // if given data is bigger than target's data, deletes data from target's right-subtree and allocates the tree with data deleted to target's right-children.
+        // if given data is bigger than target's data, deletes data from target's right-subtree and allocates the tree with data deleted to target's right-child.
         if(target->nData < nData) {
             target->second = this->delImpl(target->second, nData);
 
-        // if given data is smaller than target's data, deletes data from target's left-subtree and allocates the tree with data deleted to target's left-children.
+        // if given data is smaller than target's data, deletes data from target's left-subtree and allocates the tree with data deleted to target's left-child.
         } else if(target->nData > nData) {
             target->first = this->delImpl(target->first, nData);
 
         // if given data is same with target's data.
         } else {
-            // if target's left-children is null or right-children is null too.
+            // if target's left-child is null or right-child is null too.
             if(!target->first) {
-                // as target's right-children must replace target, save target's right-children.
-                //     if right-children is null, null is saved, and therefore target will be null.
+                // as target's right-child must replace target, save target's right-child.
+                //     if right-child is null, null is saved, and therefore target will be null.
                 Node* temp = target->second;
                 delete target;
                 return temp;
             }
 
-            // if target's right-children is null.
+            // if target's right-child is null.
             if(!target->second) {
-                // as target's left-children must replace target, save target's right-children.
+                // as target's left-child must replace target, save target's right-child.
                 Node* temp = target->first;
                 delete target;
                 return temp;
@@ -171,7 +171,7 @@ private:
             Node* successorNode = this->successor(target);
             // replace target's data with successor node's data.
             target->nData = successorNode->nData;
-            // deletes successor node's data from target's right-subtree and allocates the tree with successor node's data deleted to target's right-children.
+            // deletes successor node's data from target's right-subtree and allocates the tree with successor node's data deleted to target's right-child.
             target->second = this->delImpl(target->second, successorNode->nData);
         }
         return target;
