@@ -7,6 +7,9 @@ import (
 	"github.com/haeramkeem/alGo/collections/heap"
 )
 
+/**
+ * Test of MaxInt
+ */
 func TestMaxIntPush(t *testing.T) {
 	test := heap.NewMaxInt(10)
 	test.Push(2)
@@ -39,6 +42,9 @@ func TestMaxIntPop(t *testing.T) {
 	}
 }
 
+/**
+ * Benchmark of MaxInt
+ */
 func BenchmarkMaxIntPush(b *testing.B) {
 	test := heap.NewMaxInt(b.N)
 	for i := 0; i < b.N; i++ {
@@ -56,6 +62,9 @@ func BenchmarkMaxIntPop(b *testing.B) {
 	}
 }
 
+/**
+ * Test of MinInt
+ */
 func TestMinIntPush(t *testing.T) {
 	test := heap.NewMinInt(10)
 	test.Push(2)
@@ -88,6 +97,9 @@ func TestMinIntPop(t *testing.T) {
 	}
 }
 
+/**
+ * Benchmark of MinInt
+ */
 func BenchmarkMinIntPush(b *testing.B) {
 	test := heap.NewMinInt(b.N)
 	for i := 0; i < b.N; i++ {

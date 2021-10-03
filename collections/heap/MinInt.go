@@ -17,8 +17,8 @@ func (h *MinInt) Push(el int) error {
 	// add element in tail of Complete Binary Tree.
 	h.Tree[h.Tail] = el
 
-	// if two or more element is in CBT, rearrange it from bottom to top.
-	if h.Tail > 0 { h.rearrangeBottomUp(h.Tail) }
+	// if two or more element is in CBT, heapify it from bottom to top.
+	if h.Tail > 0 { h.heapifyAfterPush(h.Tail) }
 
 	// move tail
 	h.Tail++
@@ -41,42 +41,64 @@ func (h *MinInt) Pop() (int, error) {
 	// move tail
 	h.Tail--
 
-	// if two or more element is in CBT, rearrange it from top to bottom.
-	if h.Tail > 1 { h.rearrangeTopDown(0) }
+	// if two or more element is in CBT, heapify it from top to bottom.
+	if h.Tail > 1 { h.heapifyTopDown(0) }
 	return target, nil
 }
 
 /* ----- PRIVATE ----- */
 /**
- * Rearrange Complete Binary Tree from bottom to top.
+ * Swap value of two given index.
  */
-func (h *MinInt) rearrangeBottomUp(cur int) {
+ func (h *MinInt) swap(idx1 int, idx2 int) {
+	h.Tree[idx1], h.Tree[idx2] = h.Tree[idx2], h.Tree[idx1]
+}
+
+/**
+ * Return index that has smallest value.
+ */
+func (h *MinInt) min(idx1, idx2, idx3 int) int {
+	if h.Tree[idx1] < h.Tree[idx2] && h.Tree[idx1] < h.Tree[idx3] { return idx1 }
+	if h.Tree[idx2] < h.Tree[idx1] && h.Tree[idx2] < h.Tree[idx3] { return idx2 }
+	return idx3
+}
+
+/**
+ * Do heapify after push.
+ *     since the sibling of the current node is always bigger than the parent node, we only check and replace between the current node and the parent node.
+ */
+func (h *MinInt) heapifyAfterPush(cur int) {
 	// Notice that cur means index of current node and (cur - 1) / 2 means index of parent node.
 	//     if current node is not root and value of parent node is bigger than current node, swap value.
-	//     and check validity of parent node recursively.
+	//     and heapify recursively from parent to top.
 	if cur > 0 && h.Tree[cur] < h.Tree[(cur - 1) / 2] {
 		h.Tree[cur], h.Tree[(cur - 1) / 2] = h.Tree[(cur - 1) / 2], h.Tree[cur]
-		h.rearrangeBottomUp((cur - 1) / 2)
+		h.heapifyAfterPush((cur - 1) / 2)
 	}
 }
 
 /**
- * Rearrange Complete Binary Tree from top to bottom.
+ * Do heapify from top to bottom.
  */
-func (h *MinInt) rearrangeTopDown(cur int) {
-	// Notice that cur means index of current node and cur * 2 + 1 means index of left-child node.
-	//     if left-child is not tail and value of left-child node is smaller than current node, swap value.
-	//     and check validity of left-child node recursively.
-	if cur * 2 + 1 < h.Tail && h.Tree[cur * 2 + 1] < h.Tree[cur] {
-		h.Tree[cur * 2 + 1], h.Tree[cur] = h.Tree[cur], h.Tree[cur * 2 + 1]
-		h.rearrangeTopDown(cur * 2 + 1)
-	}
+ func (h *MinInt) heapifyTopDown(cur int) {
+	// Get children's index.
+	leftIdx := cur * 2 + 1
+	rightIdx := cur * 2 + 2
 
-	// Notice that cur means index of current node and cur * 2 + 2 means index of right-child node.
-	//     if right-child is not tail and value of right-child node is smaller than current node, swap value.
-	//     and check validity of right-child node recursively.
-	if cur * 2 + 2 < h.Tail && h.Tree[cur * 2 + 2] < h.Tree[cur] {
-		h.Tree[cur * 2 + 2], h.Tree[cur] = h.Tree[cur], h.Tree[cur * 2 + 2]
-		h.rearrangeTopDown(cur * 2 + 2)
+	// If current node do not have children.
+	if leftIdx >= h.Tail { return }
+
+	// If current node only have left-child
+	if rightIdx >= h.Tail && h.Tree[leftIdx] > h.Tree[cur] { h.swap(leftIdx, cur); return }
+
+	// Get index that has biggest value.
+	minIdx := h.min(cur, leftIdx, rightIdx)
+
+	// If maxIdx is not current node's index
+	//     first, swap current node's value and value of maxIdx.
+	//     second, heapify recursively from node of maxIdx to bottom.
+	if minIdx != cur {
+		h.swap(minIdx, cur)
+		h.heapifyTopDown(minIdx)
 	}
 }
