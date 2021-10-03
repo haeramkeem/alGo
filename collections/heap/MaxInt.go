@@ -74,6 +74,27 @@ func (h *MaxInt) heapifyAfterPush(cur int) {
 	}
 }
 
+func (h *MaxInt) heapifyBottomUp(cur int) {
+	// If current node is root.
+	if cur <= 0 { return }
+
+	// Get parent & sibling index
+	var parent int = (cur - 1) / 2
+	sibling := parent * 2 + 1
+	if sibling == cur { sibling++ }
+
+	// Get index that has biggest value.
+	maxIdx := h.max(parent, cur, sibling)
+
+	// If maxIdx is not parent node's index
+	//     first, swap parent node's value and value of maxIdx.
+	//     second, rearrange recursively from parent node.
+	if maxIdx != parent {
+		h.swap(maxIdx, parent)
+		h.heapifyBottomUp(parent)
+	}
+}
+
 /**
  * Do heapify from top to bottom.
  */

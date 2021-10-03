@@ -77,6 +77,27 @@ func (h *MinInt) heapifyAfterPush(cur int) {
 	}
 }
 
+func (h *MinInt) heapifyBottomUp(cur int) {
+	// If current node is root.
+	if cur <= 0 { return }
+
+	// Get parent & sibling index
+	var parent int = (cur - 1) / 2
+	sibling := parent * 2 + 1
+	if sibling == cur { sibling++ }
+
+	// Get index that has smallest value.
+	minIdx := h.min(parent, cur, sibling)
+
+	// If minIdx is not parent node's index
+	//     first, swap parent node's value and value of minIdx.
+	//     second, rearrange recursively from parent node.
+	if minIdx != parent {
+		h.swap(minIdx, parent)
+		h.heapifyBottomUp(parent)
+	}
+}
+
 /**
  * Do heapify from top to bottom.
  */
