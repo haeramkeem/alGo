@@ -2,11 +2,18 @@ package heap
 
 import "errors"
 
-/* ----- PUBLIC ----- */
+/* ----- TYPE ----- */
+type MinInt struct{
+	Tail	int
+	Tree	[]int
+}
+
+/* ----- CONSTRUCTOR ----- */
 func NewMinInt(size int) *MinInt {
 	return &MinInt{0, make([]int, size)}
 }
 
+/* ----- PUBLIC ----- */
 /**
  * Push one element to min heap
  */
@@ -57,7 +64,7 @@ func (h *MinInt) Pop() (int, error) {
 /**
  * Return index that has smallest value.
  */
-func (h *MinInt) min(idx1, idx2, idx3 int) int {
+func (h *MinInt) getMinIdx(idx1, idx2, idx3 int) int {
 	if h.Tree[idx1] < h.Tree[idx2] && h.Tree[idx1] < h.Tree[idx3] { return idx1 }
 	if h.Tree[idx2] < h.Tree[idx1] && h.Tree[idx2] < h.Tree[idx3] { return idx2 }
 	return idx3
@@ -77,6 +84,9 @@ func (h *MinInt) heapifyAfterPush(cur int) {
 	}
 }
 
+/**
+ * Do heapify from bottom to top.
+ */
 func (h *MinInt) heapifyBottomUp(cur int) {
 	// If current node is root.
 	if cur <= 0 { return }
@@ -87,7 +97,7 @@ func (h *MinInt) heapifyBottomUp(cur int) {
 	if sibling == cur { sibling++ }
 
 	// Get index that has smallest value.
-	minIdx := h.min(parent, cur, sibling)
+	minIdx := h.getMinIdx(parent, cur, sibling)
 
 	// If minIdx is not parent node's index
 	//     first, swap parent node's value and value of minIdx.
@@ -113,7 +123,7 @@ func (h *MinInt) heapifyBottomUp(cur int) {
 	if rightIdx >= h.Tail && h.Tree[leftIdx] > h.Tree[cur] { h.swap(leftIdx, cur); return }
 
 	// Get index that has biggest value.
-	minIdx := h.min(cur, leftIdx, rightIdx)
+	minIdx := h.getMinIdx(cur, leftIdx, rightIdx)
 
 	// If maxIdx is not current node's index
 	//     first, swap current node's value and value of maxIdx.

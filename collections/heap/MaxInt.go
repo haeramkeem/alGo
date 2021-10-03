@@ -2,11 +2,18 @@ package heap
 
 import "errors"
 
-/* ----- PUBLIC ----- */
+/* ----- TYPE ----- */
+type MaxInt struct{
+	Tail	int
+	Tree	[]int
+}
+
+/* ----- CONSTRUCTOR ----- */
 func NewMaxInt(size int) *MaxInt {
 	return &MaxInt{0, make([]int, size)}
 }
 
+/* ----- PUBLIC ----- */
 /**
  * Push one element to min heap
  */
@@ -54,7 +61,7 @@ func (h *MaxInt) swap(idx1 int, idx2 int) {
 /**
  * Return index that has biggest value.
  */
-func (h *MaxInt) max(idx1, idx2, idx3 int) int {
+func (h *MaxInt) getMaxIdx(idx1, idx2, idx3 int) int {
 	if h.Tree[idx1] > h.Tree[idx2] && h.Tree[idx1] > h.Tree[idx3] { return idx1 }
 	if h.Tree[idx2] > h.Tree[idx1] && h.Tree[idx2] > h.Tree[idx3] { return idx2 }
 	return idx3
@@ -74,17 +81,20 @@ func (h *MaxInt) heapifyAfterPush(cur int) {
 	}
 }
 
+/**
+ * Do heapify from bottom to top.
+ */
 func (h *MaxInt) heapifyBottomUp(cur int) {
 	// If current node is root.
 	if cur <= 0 { return }
 
 	// Get parent & sibling index
-	var parent int = (cur - 1) / 2
-	sibling := parent * 2 + 1
+	parent := GetParent(cur)
+	sibling := GetSibling(cur)
 	if sibling == cur { sibling++ }
 
 	// Get index that has biggest value.
-	maxIdx := h.max(parent, cur, sibling)
+	maxIdx := h.getMaxIdx(parent, cur, sibling)
 
 	// If maxIdx is not parent node's index
 	//     first, swap parent node's value and value of maxIdx.
@@ -100,8 +110,7 @@ func (h *MaxInt) heapifyBottomUp(cur int) {
  */
 func (h *MaxInt) heapifyTopDown(cur int) {
 	// Get children's index.
-	leftIdx := cur * 2 + 1
-	rightIdx := cur * 2 + 2
+	leftIdx, rightIdx := GetChildren(cur)
 
 	// If current node do not have children.
 	if leftIdx >= h.Tail { return }
@@ -110,7 +119,7 @@ func (h *MaxInt) heapifyTopDown(cur int) {
 	if rightIdx >= h.Tail && h.Tree[leftIdx] > h.Tree[cur] { h.swap(leftIdx, cur); return }
 
 	// Get index that has biggest value.
-	maxIdx := h.max(cur, leftIdx, rightIdx)
+	maxIdx := h.getMaxIdx(cur, leftIdx, rightIdx)
 
 	// If maxIdx is not current node's index
 	//     first, swap current node's value and value of maxIdx.
