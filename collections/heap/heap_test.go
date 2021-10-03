@@ -42,6 +42,16 @@ func TestMaxIntPop(t *testing.T) {
 	}
 }
 
+func TestInitMaxInt(t *testing.T) {
+	test := heap.InitMaxInt([]int{7, 6, 5, 8, 3, 5, 9, 1, 6})
+	compareWith := []int{9, 8, 7, 6, 3, 5, 5, 1, 6}
+	for i := 0; i < 9; i++ {
+		if test.Tree[i] != compareWith[i] {
+			t.Errorf("For index %d, want %d, got %d\n", i, compareWith[i], test.Tree[i])
+		}
+	}
+}
+
 /**
  * Benchmark of MaxInt
  */
@@ -93,6 +103,16 @@ func TestMinIntPop(t *testing.T) {
 	for i := 1; i <= 8 && 1 < test.Tail; i++ {
 		if v, _ := test.Pop(); i != v {
 			t.Errorf("Want %d, got %d\n", i, v)
+		}
+	}
+}
+
+func TestInitMinInt(t *testing.T) {
+	test := heap.InitMinInt([]int{7, 6, 5, 8, 3, 5, 9, 1, 6})
+	compareWith := []int{1, 5, 7, 3, 6, 5, 9, 6, 8}
+	for i := 0; i < 9; i++ {
+		if test.Tree[i] != compareWith[i] {
+			t.Errorf("For index %d, want %d, got %d\n", i, compareWith[i], test.Tree[i])
 		}
 	}
 }

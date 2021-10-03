@@ -13,6 +13,12 @@ func NewMaxInt(size int) *MaxInt {
 	return &MaxInt{0, make([]int, size)}
 }
 
+func InitMaxInt(init []int) *MaxInt {
+	res := &MaxInt{len(init), init}
+	res.heapifyForRandom()
+	return res;
+}
+
 /* ----- PUBLIC ----- */
 /**
  * Push one element to min heap
@@ -78,6 +84,17 @@ func (h *MaxInt) heapifyAfterPush(cur int) {
 	if cur > 0 && h.Tree[cur] > h.Tree[(cur - 1) / 2] {
 		h.swap(cur, (cur - 1) / 2)
 		h.heapifyAfterPush((cur - 1) / 2)
+	}
+}
+
+/*
+ * Do heapify for random slice.
+ *     since the sibling of the current node is always smaller than the parent node, we only check and replace between the current node and the parent node.
+ */
+ func (h *MaxInt) heapifyForRandom() {
+	for i := h.Tail - 1; i > 0; i-- {
+		parent := GetParent(i)
+		if h.Tree[i] > h.Tree[parent] { h.swap(i, parent) }
 	}
 }
 
