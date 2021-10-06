@@ -7,7 +7,7 @@
  */
 
 #include <iostream>
-#include <map>
+#include <vector>
 
 using namespace std;
 
@@ -15,14 +15,14 @@ using namespace std;
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        map<char, int> mapS, mapT;
-        for(auto el : s) {
-            mapS[el]++;
+        vector<int> vecS(26), vecT(26);
+        for(const auto& ch : s) {
+            vecS[ch - 'a']++;
         }
-        for(auto el : t) {
-            mapT[el]++;
+        for(const auto& ch : t) {
+            vecT[ch - 'a']++;
         }
-        return mapS == mapT;
+        return vecS == vecT;
     }
 };
 
