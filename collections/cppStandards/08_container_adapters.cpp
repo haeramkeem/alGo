@@ -50,7 +50,7 @@ int main() {
     // Priority queue uses std::less for compare type as default, so it operates maxheap.
     //    to operate priority queue minheap, you must add std::greater compare type to template.
     priority_queue<int> pqMax; // Declare maxheap priority queue.
-    priority_queue<int, vector<int>, greater<int>> pqMax1; // Same as statement above.
+    priority_queue<int, vector<int>, less<int>> pqMax1; // Same as statement above.
     priority_queue<int, vector<int>, greater<int>> pqMin; // Declare minheap priority queue.
 
     // .push() and .pop() method takes O(log n).
