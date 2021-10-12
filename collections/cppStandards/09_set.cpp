@@ -60,21 +60,26 @@ int main() {
     //     So it's helpful when checking existance of element.
     s2.count(8); // result is 1.
 
-    // These are various ways to decalre & allocate unordered set.
+    // Usage of unordered set are same as set.
+    //     declaring & allocating unordered set.
     unordered_set<int> us;
     unordered_set<int> us1(vecTemp.begin(), vecTemp.end());
     unordered_set<int> us2(us1);
     unordered_set<int> us3 = us1;
 
+    //     iterating unordered set.
     us1.begin(); // iterator of first element.
-    us1.end(); // iterator of 
+    us1.end(); // iterator of next to last element.
+    //     getting size.
     us1.size(); // result is 5.
     us1.empty(); // result is false.
     us1.max_size(); // result is capacity of set.
+    //    inserting & deleting element.
     us1.insert(4); // result is {1 2 3 4 8 9}.
     us1.erase(us1.find(2)); // result is {1 3 4 8 9}.
     us1.erase(us1.begin(), us1.find(3)); // result is {3 4 8 9}. Erase method erases element in range of (first parameter ~ second parameter - 1).
     us1.clear(); // result is {}.
+    //    finding element.
     us2.find(3); // returns iterator of given element.
     // us2.lower_bound(3); -> unordered_set doesn't support lower_bound.
     // us2.upper_bound(3); -> unordered_set doesn't support upper_bound.
