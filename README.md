@@ -9,8 +9,8 @@ AlGo rithms
 5. and any other sources...
 
 ## Structure
--- alGo /* Root directory */  
-|- algorithms /* Answers of various algorithm problems */  
-|- collections /* Implementations & examples & references of collections */  
-|- cppReferences /* C++ grammar references */  
-|- goReferences /* Golang grammar references */  
+-- **alGo** Root directory  
+|- **algorithms** Answers of various algorithm problems  
+|- **collections** Implementations & examples & references of collections  
+|- **cppReferences** C++ grammar references  
+|- **goReferences** Golang grammar references  
