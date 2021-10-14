@@ -2,6 +2,9 @@
 #include <string>
 using namespace std;
 
+// Disable synchronizing with with stdio
+#define toofast ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr)
+
 int main() {
     int a, b;
     char c;
