@@ -3,7 +3,7 @@
  * 
  * Counting Islands
  * 
- * BFS
+ * Grid BFS
  */
 
 #include <iostream>
