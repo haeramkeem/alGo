@@ -1,7 +1,9 @@
 /**
- * https://www.acmicpc.net/problem/2667
+ * BOJ2667) https://www.acmicpc.net/problem/2667
  *
- * BFS + Stack
+ * Counting Apartment
+ *
+ * Stack DFS
  */
 
 package main
