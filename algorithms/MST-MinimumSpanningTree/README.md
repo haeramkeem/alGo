@@ -1,5 +1,4 @@
 # 최소비용 신장트리
-#개인공부/알고리즘
 
 ## Minimum cost Spanning Tree(MST)
 * 일단 **Spanning Tree**는 ::Graph에서 모든 Node를 Edge로 연결하는 Tree::이고
@@ -15,6 +14,7 @@
 * 그리고 **G=(V, E)**로 그래프를 나타낸다 - Vertex와 Edge의 집합
 - - - -
 ## Kruskal algorithm
+[Code Reference](./EX_kruskal.cpp)    
 ![](README/Screen%20Shot%202021-11-01%20at%202.07.46%20PM.png)
 1. 결과 집합인 ::A는 공집합으로 시작::
 2. 모든 ::Vertex에 대해 자기자신을 원소로 갖는 크기 1짜리 집합::을 만들어준다
@@ -43,6 +43,7 @@
 * **Union-by-rank**를 도입한 Kruskal의 예시이다
 - - - -
 ## Prim algorithm
+[Code Reference](./EX_prim.cpp)    
 * 얘는 뭐 간단하다
 * ::시작노드를 하나 임의로 정하고 인접노드중에 비용이 제일 작은 것을 계속 선택하며 트리를 확장시켜나가는 개념::
 * ::Kruskal의 경우에는 트리가 여러개 만들어지고 얘네들을 합쳐나가는 과정이라면 Prim은 트리 하나를 계속해서 확장하는 과정이다::
