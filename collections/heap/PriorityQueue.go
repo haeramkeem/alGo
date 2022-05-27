@@ -75,6 +75,10 @@ func (this *PriorityQueue) Pop() interface{} {
     return popped
 }
 
+func (this *PriorityQueue) Empty() bool {
+    return this.Tail == 0
+}
+
 /////////////////////
 //  Demonstration  //
 /////////////////////
