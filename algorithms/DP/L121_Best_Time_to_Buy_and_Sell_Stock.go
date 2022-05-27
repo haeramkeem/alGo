@@ -4,18 +4,18 @@ package main
 import (
     "fmt"
     "os"
-    "math"
 )
 
 func maxProfit(prices []int) int {
-    min := prices[0]
+    // min := prices[0]
+    // But use proces[0] instead to store minimum value for optimization
     profit := 0
 
     for i := 1; i < len(prices); i++ {
-        if min > prices[i] {
-            min = prices[i]
-        } else {
-            profit = int(math.Max(float64(profit), float64(prices[i] - min)))
+        if prices[0] > prices[i] {
+            prices[0] = prices[i]
+        } else if profit < prices[i] - prices[0] {
+            profit = prices[i] - prices[0]
         }
     }
 
