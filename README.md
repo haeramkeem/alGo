@@ -12,10 +12,11 @@ AlGo rithms
 
 ## Structure
 
-* *alGo* : Root directory  
-  * *algorithms* : Answers of various algorithm problems  
-  * *collections* : Implementations & examples & references of collections  
-  * *cppReferences* : C++ grammar references  
-  * *goReferences* : Golang grammar references  
-  * *Fall2021-CNU-Algorithm* : Practices from lecture Algorithm,
-Fall2021, CNU, Prof. Young-seok Lee
+```
+alGo/               : Root
+  docs/             : Implementations & examples & references of collections  
+  problem-archive/  : Answers of various algorithm problems  
+  syntax-refs/      : PL syntax references for solving problems
+    cpp             : C++ grammar references  
+    go              : Golang grammar references  
+```
