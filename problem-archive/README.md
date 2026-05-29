@@ -8,7 +8,6 @@
 ## Dynamic Programming
 
 - [A12865. Knapsack](./DP/A12865_Knapsack.cpp)
-- [Longest Common Sequence](./DP/CNU_week13_prob3_LCS.cpp)
 
 ## Disjoint Union Set
 
