@@ -51,7 +51,3 @@
 ## Topological Sort
 
 - [A1005. ACM Craft](./TopologicalSort/A1005_ACM_Craft.cpp)
-
-## Trie
-
-- [L1178. Number of Valid Words for Each Puzzle](./Trie/L1178_Number_of_Valid_Words_for_Each_Puzzle.cpp)
